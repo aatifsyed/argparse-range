@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "argparse-range"
+version = "0.1.0"
+description = "Numeric range for argparse arguments"
+authors = ["Aatif Syed <aatifsyedyp@gmail.com>"]
+include = ["argparse_range/py.typed"]
+repository = "https://github.com/aatifsyed/argparse-range"
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2"
+mypy = "^0.930"
+black = "^21.12b0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO"
+addopts = ["--doctest-glob=README.md"]
