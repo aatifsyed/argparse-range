@@ -1,10 +1,11 @@
 [tool.poetry]
 name = "argparse-range"
-version = "0.1.0"
+version = "0.1.1"
 description = "Numeric range for argparse arguments"
 authors = ["Aatif Syed <aatifsyedyp@gmail.com>"]
 include = ["argparse_range/py.typed"]
 repository = "https://github.com/aatifsyed/argparse-range"
+readme = "./README.md"
 license = "MIT"
 
 [tool.poetry.dependencies]
