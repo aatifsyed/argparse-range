@@ -33,6 +33,10 @@ def range_action(minimum: T, maximum: T):
                 help = f"{help} {range_comment}"
             else:
                 help = range_comment
+            if isinstance(default, str) and type is None:
+                raise RuntimeWarning(
+                    f"RangeAction has default {default} with type {__builtins__.type(default)}, which may lead to inconsistent types in the returned Namespace"
+                )
             super().__init__(
                 option_strings,
                 dest,
