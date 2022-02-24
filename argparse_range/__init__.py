@@ -1,4 +1,5 @@
 import argparse
+from email import message
 from typing import Any, Callable, Iterable, Optional, Sequence, Tuple, TypeVar, Union
 
 
@@ -59,8 +60,9 @@ def range_action(minimum: T, maximum: T):
         ) -> None:
             def check_value(v):
                 if not minimum <= v <= maximum:
-                    raise argparse.ArgumentTypeError(
-                        f"Invalid choice: {v} (must be in range {minimum}..={maximum})",
+                    raise argparse.ArgumentError(
+                        argument=self,
+                        message=f"Invalid choice: {v} (must be in range {minimum}..={maximum})",
                     )
 
             converter: Callable[[str], T]
