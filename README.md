@@ -19,8 +19,8 @@ Use it like this:
 0
 >>> parser.parse_args(["20"])
 Traceback (most recent call last):
-    ....
-argparse.ArgumentTypeError: Invalid choice: 20 (must be in range 0..=10)
+... # argparse.ArgumentError: argument rangedarg: Invalid choice: 20 (must be in range 0..=10)
+SystemExit: 2
 
 ```
 
@@ -67,8 +67,8 @@ Namespace(maybe=None)
 Namespace(maybe=5)
 >>> parser.parse_args(["--maybe", "20"])
 Traceback (most recent call last):
-    ....
-argparse.ArgumentTypeError: Invalid choice: 20 (must be in range 0..=10)
+... # argparse.ArgumentError: argument --maybe: Invalid choice: 20 (must be in range 0..=10)
+SystemExit: 2
 
 ```
 

@@ -1,7 +1,6 @@
 from argparse_range import range_action
 import argparse
 import pytest
-from argparse import ArgumentTypeError
 
 
 def test_single_int_argument_in_range():
@@ -23,14 +22,14 @@ def test_single_float_argument_in_range():
 def test_single_argument_below_range():
     parser = argparse.ArgumentParser()
     parser.add_argument("testarg", action=range_action(0, 1))
-    with pytest.raises(ArgumentTypeError):
+    with pytest.raises(SystemExit):
         parser.parse_args(["-1"])
 
 
 def test_single_argument_above_range():
     parser = argparse.ArgumentParser()
     parser.add_argument("testarg", action=range_action(0, 1))
-    with pytest.raises(ArgumentTypeError):
+    with pytest.raises(SystemExit):
         parser.parse_args(["2"])
 
 
@@ -44,14 +43,14 @@ def test_multiple_arguments_all_in_range():
 def test_multiple_arguments_some_out_of_range():
     parser = argparse.ArgumentParser()
     parser.add_argument("testarg", action=range_action(0, 1), nargs="*")
-    with pytest.raises(ArgumentTypeError):
+    with pytest.raises(SystemExit):
         parser.parse_args(["0", "1", "2"])
 
 
 def test_multiple_arguments_all_out_of_range():
     parser = argparse.ArgumentParser()
     parser.add_argument("testarg", action=range_action(0, 1), nargs="*")
-    with pytest.raises(ArgumentTypeError):
+    with pytest.raises(SystemExit):
         parser.parse_args(["2"])
 
 
@@ -72,7 +71,7 @@ def test_optional_argument_present_in_range():
 def test_optional_argument_present_out_of_range():
     parser = argparse.ArgumentParser()
     parser.add_argument("testarg", action=range_action(0, 1), nargs="?")
-    with pytest.raises(ArgumentTypeError):
+    with pytest.raises(SystemExit):
         parser.parse_args(["2"])
 
 
@@ -87,7 +86,7 @@ def test_explicit_type_in_range():
 def test_explicit_type_out_of_range():
     parser = argparse.ArgumentParser()
     parser.add_argument("testarg", action=range_action(0, 1), type=float)
-    with pytest.raises(ArgumentTypeError):
+    with pytest.raises(SystemExit):
         parser.parse_args(["2"])
 
 
@@ -103,7 +102,7 @@ def test_explicit_type_multiple_in_range():
 def test_explicit_type_multiple_some_out_of_range():
     parser = argparse.ArgumentParser()
     parser.add_argument("testarg", action=range_action(0, 1), type=float, nargs="*")
-    with pytest.raises(ArgumentTypeError):
+    with pytest.raises(SystemExit):
         parser.parse_args(["0", "1", "3"])
 
 
@@ -124,5 +123,5 @@ def test_default_overridden():
 def test_default_overridden_out_of_range():
     parser = argparse.ArgumentParser()
     parser.add_argument("--testarg", action=range_action(0, 1), default=0)
-    with pytest.raises(ArgumentTypeError):
+    with pytest.raises(SystemExit):
         parser.parse_args(["--testarg", "2"])
