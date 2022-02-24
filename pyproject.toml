@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "argparse-range"
-version = "0.1.1"
+version = "0.1.2"
 description = "Numeric range for argparse arguments"
 authors = ["Aatif Syed <aatifsyedyp@gmail.com>"]
 include = ["argparse_range/py.typed"]
